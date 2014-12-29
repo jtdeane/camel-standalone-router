@@ -12,6 +12,12 @@ public class MagicRouteBuilder extends RouteBuilder {
 
     public void configure() {
     	
+    	/**
+    	 * Route errors to DLQ after one retry and one second delay
+    	 */
+    	errorHandler(deadLetterChannel("activemq:emagic.dead").
+    			maximumRedeliveries(1).redeliveryDelay(1000));
+    	
 		XPathBuilder splitXPath = new XPathBuilder (splitXpath);
 		
     	/**
