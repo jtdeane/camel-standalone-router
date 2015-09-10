@@ -28,7 +28,7 @@ public class MagicRouteBuilder extends RouteBuilder {
     	 */
 		from("activemq:emagic.orders").
 			split(splitXPath).parallelProcessing().
-			wireTap("direct:ministry").
+			//wireTap("direct:ministry").
 		to("activemq:emagic.order");
     	
     	/**
@@ -40,11 +40,12 @@ public class MagicRouteBuilder extends RouteBuilder {
     			to("activemq:priority.order").
     		otherwise().
     			to("activemq:magic.order");
-    	/**
+    	
+		/**
     	 * Content Based Routing - Mediation, simple expression
-	 
-	XmlJsonDataFormat xmlJsonFormat = new XmlJsonDataFormat();
-	xmlJsonFormat.setForceTopLevelObject(true);
+    	 
+		XmlJsonDataFormat xmlJsonFormat = new XmlJsonDataFormat();
+		xmlJsonFormat.setForceTopLevelObject(true);
 		
     	from("activemq:emagic.order").
     	choice().
@@ -74,6 +75,6 @@ public class MagicRouteBuilder extends RouteBuilder {
 					log("ILLEGAL MAGIC ALERT").
 					to("activemq:topic:magic.alerts").		
 				otherwise().
-					log("...off into the ether");*/	
+					log("...off into the ether");	*/
     }
 }
