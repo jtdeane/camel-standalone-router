@@ -13,7 +13,7 @@ public class MagicRouteBuilder extends RouteBuilder {
 
     public void configure() {
     	
-    	/**
+    	/*
     	 * Route errors to DLQ after one retry and one second delay
     	 */
     	errorHandler(deadLetterChannel("activemq:emagic.dead").
@@ -21,7 +21,7 @@ public class MagicRouteBuilder extends RouteBuilder {
     	
 		XPathBuilder splitXPath = new XPathBuilder (splitXpath);
 		
-    	/**
+    	/*
     	 * Splitter - xpath expression
     	 */
 		from("activemq:emagic.orders").
@@ -29,7 +29,7 @@ public class MagicRouteBuilder extends RouteBuilder {
 			//wireTap("direct:ministry").
 		to("activemq:emagic.order");
     	
-    	/**
+    	/*
     	 * Content Based Routing - simple expression
     	 */
     	from("activemq:emagic.order").
@@ -39,8 +39,9 @@ public class MagicRouteBuilder extends RouteBuilder {
     		otherwise().
     			to("activemq:magic.order");
     	
-		/**
+		/*
     	 * Content Based Routing - Mediation, simple expression
+    	 * http://camel.apache.org/maven/camel-2.15.0/camel-core/apidocs/org/apache/camel/Processor.html
     	 
 		XmlJsonDataFormat xmlJsonFormat = new XmlJsonDataFormat();
 		xmlJsonFormat.setForceTopLevelObject(true);
@@ -55,7 +56,7 @@ public class MagicRouteBuilder extends RouteBuilder {
     			transform(body().regexReplaceAll("@", "")).
     			to("activemq:magic.order");  */  	
     	
-    	/**
+    	/*
     	 * Content Based Routing - Wire-Tap to ActiveMQ Topic 
     	 
     	from("activemq:emagic.order").
