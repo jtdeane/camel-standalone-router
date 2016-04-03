@@ -31,13 +31,13 @@ public class MagicRouteBuilder extends RouteBuilder {
     	
     	/*
     	 * Content Based Routing - simple expression
-    	 */
+    	 
     	from("activemq:emagic.order").
     	choice().
     		when().simple("${in.body} contains 'Houdini'").
     			to("activemq:priority.order").
     		otherwise().
-    			to("activemq:magic.order");
+    			to("activemq:magic.order");*/
     	
 		/*
     	 * Content Based Routing - Mediation, simple expression
@@ -57,8 +57,9 @@ public class MagicRouteBuilder extends RouteBuilder {
     			to("activemq:magic.order");  */  	
     	
     	/*
-    	 * Content Based Routing - Wire-Tap to ActiveMQ Topic 
-    	 
+    	 * Content Based Routing - Wire-Tap to ActiveMQ Topic
+    	 * Requires updating Splitter Route and Uncomment wireTap 
+    	 */
     	from("activemq:emagic.order").
     		wireTap("direct:ministry").
     	to("activemq:magic.order");
@@ -69,6 +70,6 @@ public class MagicRouteBuilder extends RouteBuilder {
 					log("ILLEGAL MAGIC ALERT").
 					to("activemq:topic:magic.alerts").		
 				otherwise().
-					log("...off into the ether");	*/   	
+					log("...off into the ether");
     }
 }

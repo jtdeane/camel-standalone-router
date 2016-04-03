@@ -37,5 +37,16 @@
 	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
 	    <property name="configuration" ref="jmsConfig"/>
 	</bean>
+    
+    <!-- Redis Configuration 
+    <bean id="redisConnectionFactory" 
+        class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+       <property name="hostName" value="localhost"/>
+       <property name="port" value="6379"/>        
+    </bean>
+    
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="redisConnectionFactory"/>
+    </bean>-->
      	                           
 </beans>
