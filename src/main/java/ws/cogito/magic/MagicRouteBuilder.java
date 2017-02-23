@@ -25,7 +25,6 @@ public class MagicRouteBuilder extends RouteBuilder {
     	 */
 		from("activemq:emagic.orders").
 			split(splitXPath).parallelProcessing().
-			//wireTap("direct:ministry").
 		to("activemq:emagic.order");
     	
     	/*
@@ -37,9 +36,8 @@ public class MagicRouteBuilder extends RouteBuilder {
     			to("activemq:priority.order").
     		otherwise().
     			to("activemq:magic.order");
-    }
     	
-	/*
+    	/*
     	 * Content Based Routing - Mediation, simple expression
     	 * http://camel.apache.org/maven/camel-2.15.0/camel-core/apidocs/org/apache/camel/Processor.html
     	 
@@ -54,23 +52,22 @@ public class MagicRouteBuilder extends RouteBuilder {
     		otherwise().
     			marshal(xmlJsonFormat).
     			transform(body().regexReplaceAll("@", "")).
-    			to("activemq:magic.order");    	
-    }*/
+    			to("activemq:magic.order");*/ 	
 		
     	/*
     	 * Content Based Routing - Wire-Tap to ActiveMQ Topic
     	 * Requires updating Splitter Route and Uncomment wireTap 
     	 
-    	from("activemq:emagic.order").
-    		wireTap("direct:ministry").
-    	to("activemq:magic.order");
-    	
+		from("activemq:emagic.order").
+			wireTap("direct:ministry").
+		to("activemq:magic.order");
+		
     	from("direct:ministry").
 			choice().
-				when().simple("${in.body} contains 'Elder Wand'").
+				when().simple("${in.body} contains 'Elder'").
 					log("ILLEGAL MAGIC ALERT").
 					to("activemq:topic:magic.alerts").		
 				otherwise().
-					log("...off into the ether");
-    }*/
+					log("...off into the ether");*/
+    }
 }
