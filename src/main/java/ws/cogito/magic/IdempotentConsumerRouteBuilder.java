@@ -8,9 +8,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 public class IdempotentConsumerRouteBuilder extends RouteBuilder {
 
-	/*@Autowired
-	RedisTemplate<String, String> redisTemplate;*/
-	
+	/*
+	@Autowired
+	RedisTemplate<String, String> redisTemplate;
+	*/
 	
 	@Override
 	public void configure() throws Exception {
@@ -35,11 +36,12 @@ public class IdempotentConsumerRouteBuilder extends RouteBuilder {
     	 * Idempotent Consumer - Redis
     	 * - requires uniqueId - GUUD
     	 * - require redis running and configured
-    	 *
+    	 
     	from("activemq:unique.order").
     		idempotentConsumer(header("uniqueId"), 
     				RedisIdempotentRepository.redisIdempotentRepository(redisTemplate, "camel-repo")).
 		to("activemq:magic.order"); 
 		*/
+		
 	}
 }

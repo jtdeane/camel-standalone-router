@@ -1,13 +1,16 @@
 package ws.cogito.magic;
 
+import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.builder.xml.XPathBuilder;
 import org.apache.camel.model.dataformat.XmlJsonDataFormat;
+import org.springframework.stereotype.Component;
 
 /**
  * Magic Route Builder
  */
-public class MagicRouteBuilder extends RouteBuilder {
+@Component
+public class MagicRouteBuilder extends RouteBuilder implements RoutesBuilder {
 	
 	public static String splitXpath = "//orders/order";
 
@@ -52,7 +55,7 @@ public class MagicRouteBuilder extends RouteBuilder {
     		otherwise().
     			marshal(xmlJsonFormat).
     			transform(body().regexReplaceAll("@", "")).
-    			to("activemq:magic.order");*/ 	
+    			to("activemq:magic.order"); */	
 		
     	/*
     	 * Content Based Routing - Wire-Tap to ActiveMQ Topic

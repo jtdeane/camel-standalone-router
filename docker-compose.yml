@@ -1,0 +1,22 @@
+version: '3'
+services:
+  standalone-camel-router:
+    build: .
+    hostname: standalone-camel-router
+    environment:
+     - JAVA_OPTS=-Xmx256m -Xms128m
+    ports:
+     - "9005:9005"
+    depends_on:
+     - "magic-broker"
+  magic-broker:
+    hostname: magic-broker
+    image: "rmohr/activemq:5.14.3-alpine"
+    ports:
+     - "61616:61616"
+     - "8161:8161"
+  hawtio:
+    hostname: magic-ops
+    image: "indigo/hawtio"
+    ports:
+     - "8090:8090"       
