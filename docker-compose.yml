@@ -9,6 +9,15 @@ services:
      - "9005:9005"
     depends_on:
      - "magic-broker"
+  magic-client:
+    image: jtdeane/docker-message-client:latest
+    hostname: magic-client
+    environment:
+     - JAVA_OPTS=-Xmx256m -Xms128m
+    ports:
+     - "9999:9999"
+    depends_on:
+     - "magic-broker"     
   magic-supplies:
     image: jtdeane/magic-supplies:latest
     hostname: magic-supplies

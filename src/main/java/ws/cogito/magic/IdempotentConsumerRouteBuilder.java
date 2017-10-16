@@ -1,12 +1,15 @@
 package ws.cogito.magic;
 
+import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.redis.processor.idempotent.RedisIdempotentRepository;
 import org.apache.camel.processor.idempotent.MemoryIdempotentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 
-public class IdempotentConsumerRouteBuilder extends RouteBuilder {
+@Component
+public class IdempotentConsumerRouteBuilder extends RouteBuilder implements RoutesBuilder {
 
 	/*
 	@Autowired
@@ -37,7 +40,7 @@ public class IdempotentConsumerRouteBuilder extends RouteBuilder {
     	 * - requires uniqueId - GUUD
     	 * - require redis running and configured
     	 
-    	from("activemq:unique.order").
+    	from("activemq:unique.orders").
     		idempotentConsumer(header("uniqueId"), 
     				RedisIdempotentRepository.redisIdempotentRepository(redisTemplate, "camel-repo")).
 		to("activemq:magic.order"); 
