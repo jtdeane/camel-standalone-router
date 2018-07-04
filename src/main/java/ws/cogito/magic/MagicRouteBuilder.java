@@ -55,7 +55,7 @@ public class MagicRouteBuilder extends RouteBuilder implements RoutesBuilder {
     		otherwise().
     			marshal(xmlJsonFormat).
     			transform(body().regexReplaceAll("@", "")).
-    			to("activemq:magic.order"); */	
+    			to("activemq:magic.order"); 	*/
 		
     	/*
     	 * Content Based Routing - Wire-Tap to ActiveMQ Topic

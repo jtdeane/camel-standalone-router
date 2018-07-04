@@ -1,7 +1,7 @@
 camel-standalone-router
 =======================
 
-Built with Java 8+, Apache Camel (2.18.3) and Spring Boot (1.5.6.RELEASE)
+Built with Java 8+, Apache Camel (2.22.0) and Spring Boot (2.0.3.RELEASE)
 
 Tested with JUnit (4.12)
 
@@ -17,7 +17,7 @@ Start Docker
 
 View Application
 
-`http://localhost:9005/info`
+`http://localhost:9005/actuator/info`
 
 View ActiveMQ (_admin/admin_)
 
@@ -44,7 +44,7 @@ OR
 
 View Application
 
-`http://localhost:9005/info`
+`http://localhost:9005/actuator/info`
 
 View ActiveMQ (_admin/admin_)
 

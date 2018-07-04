@@ -13,8 +13,8 @@ public class IdempotentConsumerRouteBuilder extends RouteBuilder implements Rout
 
 	/*
 	@Autowired
-	RedisTemplate<String, String> redisTemplate;
-	*/
+	RedisTemplate<String, String> redisTemplate;*/
+	
 	
 	@Override
 	public void configure() throws Exception {
@@ -43,8 +43,7 @@ public class IdempotentConsumerRouteBuilder extends RouteBuilder implements Rout
     	from("activemq:unique.orders").
     		idempotentConsumer(header("uniqueId"), 
     				RedisIdempotentRepository.redisIdempotentRepository(redisTemplate, "camel-repo")).
-		to("activemq:magic.order"); 
-		*/
-		
+		to("activemq:magic.order"); */
+    	
 	}
 }
